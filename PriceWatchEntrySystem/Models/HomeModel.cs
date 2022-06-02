@@ -10,4 +10,10 @@ namespace PriceWatchEntrySystem.Models
        
 
     }
+
+    public class LoginViewModel
+    {
+        public string Username;
+        public string Password;
+    }
 }
