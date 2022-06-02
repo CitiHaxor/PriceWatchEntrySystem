@@ -2,6 +2,317 @@
 @{
     ViewBag.Title = "DataVisualization";
 }
+<style>
+    .left {
+        float: left;
+        width: 240px;
+        background-color: ghostwhite;
+        height: 600px;
+        margin-left: 20px;
+    }
+    .table{
+        margin-top:20px;
+        width:1300px;
+    }
 
-<h2>DataVisualization</h2>
+    .right {
+        float: left;
+        height: 600px;
+        margin-left: 10px;
+    }
+    .tot{
+        height:600px;
+    }
+
+</style>
+
+<br />
+<div class="tot">
+    <div class="left">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Categories</a>
+            </li>
+            <li>
+                <br />
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Barkery</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cakes</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dairy</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Frozen Confections</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Rice/Oil</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Snack Bars/ Energy Bars</a>
+                    <a class="dropdown-item" href="#">Snacks</a>
+                    <a class="dropdown-item" href="#">Biscuits</a>
+                    <a class="dropdown-item" href="#">Dried Fruits</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Noodles</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Canned Food</a>
+                    <a class="dropdown-item" href="#">Aseptically Packaged Food</a>
+                    <a class="dropdown-item" href="#">Fresh Vegetables</a>
+                    <a class="dropdown-item" href="#">Fresh Fruits</a>
+                    <a class="dropdown-item" href="#">Chilled/ Fresh Meat</a>
+                    <a class="dropdown-item" href="#">Previously Frozen Meat </a>
+                    <a class="dropdown-item" href="#">Frozen Meat/ Poultry</a>
+                    <a class="dropdown-item" href="#">Frozen Vegetables</a>
+                    <a class="dropdown-item" href="#">Frozen Seafood</a>
+                    <a class="dropdown-item" href="#">Chilled/ Fresh Meat</a>
+                    <a class="dropdown-item" href="#">Chilled/ Fresh Meat</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Candies/Snacks</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cakes</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Drinks</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cakes</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Wines</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#"></a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Personal Care</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Oral Care</a>
+                    <a class="dropdown-item" href="#">Hand Sanitation</a>
+                    <a class="dropdown-item" href="#">Bathing Lotions/ Liquid Soap/ Soap</a>
+                    <a class="dropdown-item" href="#">Hair Care</a>
+                    <a class="dropdown-item" href="#">Feminine Care</a>
+                    <a class="dropdown-item" href="#">Wet Wipes</a>
+                    <a class="dropdown-item" href="#">Antiperspirants/ Deodorants</a>
+                    <a class="dropdown-item" href="#">Men’s Care</a>
+                    <a class="dropdown-item" href="#">Women’s Hair Removers</a>
+                    <a class="dropdown-item" href="#">Skin Care</a>
+                    <a class="dropdown-item" href="#">Drugs/ Herbs</a>
+                    <a class="dropdown-item" href="#">Adult Diapers/ Diaper Pants</a>
+                    <a class="dropdown-item" href="#">Contraceptives</a>
+                    <a class="dropdown-item" href="#">Medical Equipment</a>
+                    <a class="dropdown-item" href="#">Health Protection Products</a>
+                    <a class="dropdown-item" href="#">First Aid</a>
+                    <a class="dropdown-item" href="#">Health Supplements/ Dietary Supplements</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Household</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cakes</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Mik Power/Baby Care</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Cakes</a>
+                    <a class="dropdown-item" href="#">Breads</a>
+                    <a class="dropdown-item" href="#">Breakfast Cereals</a>
+                    <a class="dropdown-item" href="#">Spreads</a>
+                    <a class="dropdown-item" href="#">Honey/Syrup</a>
+                </div>
+            </li>
+            <li>
+                <br />
+            </li>
+        </ul>
+
+
+    </div>
+    <div class="m0">
+
+    </div>
+
+    <div class="right">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Wellcome</th>
+                    <th scope="col">PARKnSHOP</th>
+                    <th scope="col">Market Place</th>
+                    <th scope="col">Watsons</th>
+                    <th scope="col">Mannings</th>
+                    <th scope="col">AEON</th>
+                    <th scope="col">DCH Food Mart</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-active">
+                    <th scope="row">Active</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Primary</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Primary</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Secondary</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Success</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Danger</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Warning</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Info</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Light</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Dark</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Dark</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Dark</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="table-active">
+                    <th scope="row">Dark</th>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
