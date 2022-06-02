@@ -2,6 +2,43 @@
 @{
     ViewBag.Title = "Register";
 }
+<style>
+    .bg {
+        height: 600px;
+        width: 1000px;
+        background-color: lightsteelblue;
+        padding: 200px 350px;
+        margin: 0 auto;
+    }
+
+    .but {
+        padding: 0 100px;
+    }
+</style>
+
 
 <h2>Register</h2>
+<div class="bg">
+    <div class="center">
+        <div class="form-group">
+            <select class="form-select" id="exampleSelect1">
+                <option>staff</option>
+                <option>manager</option>
+                <option>council</option>
+            </select>
+        </div>
 
+        <br />
+        <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Username">
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <br />
+        <div class="but">
+            <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
