@@ -1,7 +1,44 @@
 ﻿
 @{
     ViewBag.Title = "DataEntry";
+
 }
 
+<style>
+    .form-group {
+        height: 600px;
+        width: 800px;
+        margin: auto;
+        background-color:gainsboro;
+        padding: 200px 250px;
+    }
+    .text-block{
+        margin: auto;
+    }
+    .form-label h3 {
+        text-align:center;
+    }
+    .form-label h5 {
+        text-align: center;
+        color:ghostwhite;
+    }
+    .form-control{
+        margin: 0 auto;
+    }
+</style>
+
+
 <h2>DataEntry</h2>
+
+<div class="form-group">
+    <div class="text-block">
+        <div for="formFile" class="form-label">
+            <h3>Drag and drop your file</h3>
+            <h3>or</h3>
+            <h3>browse file</h3>
+            <h5>examples:jpg.psd.png.zip...</h5>
+        </div>
+    </div>
+    <input class="form-control" type="file" id="formFile">
+</div>
 
