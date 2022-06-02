@@ -27,7 +27,6 @@ namespace PriceWatchEntrySystem.Controllers
         }
 
 
-
         [HttpGet]
         public ActionResult Login()
         {
