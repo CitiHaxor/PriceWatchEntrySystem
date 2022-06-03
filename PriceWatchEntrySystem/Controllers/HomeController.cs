@@ -32,23 +32,24 @@ namespace PriceWatchEntrySystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult DataEntry(HttpPostedFileBase httpPostedFile)
+        public ActionResult DataEntry(HttpPostedFileBase postedFile)
         {
-            //Check file type
-            string sFileName = System.IO.Path.GetFileName(httpPostedFile.FileName);
-            string sFileExt = System.IO.Path.GetExtension(sFileName);
+            if (postedFile != null) { 
+                //Check file type
+                string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
+                string sFileExt = System.IO.Path.GetExtension(sFileName);
 
-            if (sFileExt == ".csv")
-            {
-                // Read the contents of the csv file, update the Product Price table
-                
-
-
-            }
+                if (sFileExt == ".csv")
+                {
+                    // Read the contents of the csv file, update the Product Price table
 
 
+                }
+        }
 
-            return View();
+
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
