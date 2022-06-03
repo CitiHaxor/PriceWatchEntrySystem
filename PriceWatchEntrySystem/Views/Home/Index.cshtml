@@ -2,96 +2,131 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    .button {
-        background-color: #04AA6D;
-        border: none;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        width: 90px;
-        height: 90px;
+    * {
+        font-family: sans-serif;
     }
 
-    .button5 {
-        border-radius: 50%;
-    }
-
-    .first {
-        padding-left: 750px;
-    }
-
-    .secondleft {
-        padding-left: 600px;
-    }
-
-    .secondright {
-        padding-left: 350px;
-    }
-
-    .center {
+    .wrapper {
+        width: 1200px;
+        height :600px;
         margin: 0 auto;
+        background-color:aliceblue ;
     }
 
-    .thirdleft {
-        padding-left: 500px;
+    .center div{
+        width:800px;
+        margin: 0 auto;
+        height: 80px;
+    }
+    .center {
+        padding: 200px 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .blank{
+        height:40px;
+        width:100px;
+        display :inline-block;
+    }
+    .larger{
+        width:200px;
+    }
+    .aaa {
+
+       
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    .thirdright {
-        padding-left: 500px;
+
+
+    .center button {
+        background-color: cornflowerblue;
+        color: white;
+        border: none;
+        padding: 5px;
+        font-size: 18px;
+        height: 130px;
+        width: 130px;
+        box-shadow: 0 2px 4px darkslategray;
+        cursor: pointer;
+        transition: all 0.2s ease;
     }
+
+    .center button:active {
+        background-color: cornflowerblue;
+        box-shadow: 0 0 2px darkslategray;
+        transform: translateY(2px);
+    }
+
+    .center button:not(:first-child) {
+        margin-top: 10px;
+    }
+
+
+    .round-5 {
+        border-radius: 40%;
+    }
+
+    .round-6 {
+        border-radius: 70%;
+    }
+    .second .left{
+        margin-left: 200px;
+    }
+    .second .right {
+        margin-left: 130px;
+    }
+    .third  .left {
+        margin-left: 150px;
+    }
+
+    .third  .right {
+        margin-left: 250px;
+    }
+
 </style>
 
 
 
 <h2>Home Page</h2>
 
-<div class=" first">
-    <button class="button button5">Bakery</button>
-</div>
 
-<div class=" center">
-    <span class="secondleft">
-        <button class="button button5">Dairy</button>
-    </span>
-    <span class=" secondright">
-        <button class="button button5">Candies<br />/Snacks</button>
-    </span>
-</div>
+<div class=" wrapper">
+    <div class="center">
 
 
-<div class=" center">
-    <span class="thirdleft">
-        <button class="button button5">Rice/Oil</button>
-    </span>
-    <span class=" thirdright">
-        <button class="button button5">Drinks</button>
-    </span>
-</div>
+        <div>
+            <button type="button" class="larger btn btn-secondary aaa  round-6">Bakery</button>
+        </div>
+        <div class="second">
+            <button type="button" class="larger btn btn-secondary round-6 left">Dairy</button>
+            <button type="button" class="larger btn btn-secondary round-6 right">Candies/ Snacks</button>
+        </div>
+        <div class=" third">
+            <button type="button" class="larger btn btn-secondary round-6 left ">Rice/Oil</button>
+            <button type="button" class="larger btn btn-secondary round-6 right ">Drinks</button>
+        </div>
+        <div class=" third ">
+            <button type="button" class="larger btn btn-secondary round-6 left ">Noodles</button>
+            <button type="button" class="larger btn btn-secondary round-6 right ">Wines</button>
+        </div>
+        <div class=" second ">
+            <button type="button" class="larger btn btn-secondary round-6 left">Personal Care</button>
+            <button type="button" class="larger btn btn-secondary round-6 right">Mik Power/ Baby Care</button>
+        </div>
+        <div>
 
-<div class=" center">
-    <span class="thirdleft">
-        <button class="button button5">Noodles</button>
-    </span>
-    <span class=" thirdright">
-        <button class="button button5">Wines</button>
-    </span>
-</div>
-
-<div class=" center">
-    <span class="secondleft">
-        <button class="button button5">Personal Care</button>
-    </span>
-    <span class=" secondright">
-        <button class="button button5">Mik Power/ <br />Baby Care</button>
-    </span>
-</div>
+            <button type="button" class="larger btn btn-secondary aaa  round-6">Household</button>
+        </div>
+    </div>
 
 
-<div class=" first">
-    <button class="button button5">Bakery</button>
+
+
+
 </div>
 
