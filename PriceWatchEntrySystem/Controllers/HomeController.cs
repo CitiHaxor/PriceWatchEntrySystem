@@ -63,10 +63,21 @@ namespace PriceWatchEntrySystem.Controllers
             
             if (Catagory != null)
             {
+                List<string> barcodeIDs = new List<string>();
+
                 PriceTableViewModel priceTable = new PriceTableViewModel();
                 priceTable.CatagoryName = Catagory;
 
+                // Get a list of barcode ID under the catagory
+                DataTable dataTable = ExecuteSQLQuery("SELECT `barcode` FROM `barcode_mapping` WHERE `categories` = '"+Catagory+"'");
 
+
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    barcodeIDs.Add(dataTable.Rows[i]["barcode"].ToString());
+                }
+
+                // For each barcode number, get its info
 
 
                 PricesTableRows pricesTableRows = new PricesTableRows();
