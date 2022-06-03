@@ -9,50 +9,39 @@
         height: 600px;
         width: 800px;
         margin: auto;
-        background-color: gainsboro;
+        background-color:gainsboro;
         padding: 200px 250px;
     }
-
-    .text-block {
+    .text-block{
         margin: auto;
     }
-
     .form-label h3 {
-        text-align: center;
+        text-align:center;
     }
-
     .form-label h5 {
         text-align: center;
-        color: ghostwhite;
+        color:ghostwhite;
     }
-
-    .form-control {
+    .form-control{
         margin: 0 auto;
     }
 </style>
 
 
+<h2>Data Entry</h2>
 
-    <h2>Data Entry</h2>
-
-
-    <div class="form-group bg-light rounded mb-5 text-center">
-        @using (Html.BeginForm("DataEntry", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <div class="text-block">
-                <div for="formFile" class="">
-                    <h3>Drag and drop your file</h3>
-                    <h3>or</h3>
-                    <h3>browse file</h3>
-                    <h5>examples:csv, xls, txt...</h5>
-                </div>
-            </div>
-            @*<input class="form-control" type="file" id="formFile">*@
-            @*@Html.TextBox("httpPostedFile", null, new { type = "file", @class = "form-control mb-3" })*@
-            <input type="file" name="postedFile" />
-            <input type="submit" value="Submit" class="btn rounded-pill btn-info rounded mb-3">
-        }
+<div class="form-group bg-light rounded mb-5 text-center">
+    <div class="text-block">
+        <div for="formFile" class="">
+            <h3>Drag and drop your file</h3>
+            <h3>or</h3>
+            <h3>browse file</h3>
+            <h5>examples:csv, xls, txt...</h5>
+        </div>
     </div>
-
+    @*<input class="form-control" type="file" id="formFile">*@
+    @Html.TextBox("httpPostedFile", null, new { type = "file", @class = "form-control mb-3" })
+    <input type="submit" value="Submit" class="btn rounded-pill btn-info rounded mb-3">
+</div>
 
 
