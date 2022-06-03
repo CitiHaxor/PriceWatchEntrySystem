@@ -70,30 +70,50 @@
 
 
 
-<h2>Home Page</h2>
+
 
 
 <div class=" wrapper">
     <div class="center">
-
+        <h2>Click a button below to check it's price table</h2>
 
         <div>
-            <button type="button" class="larger btn btn-secondary round-6">Bakery</button>
-            <button type="button" class="larger btn btn-secondary round-6">Dairy</button>
-            <button type="button" class="larger btn btn-secondary round-6">Candies/ Snacks</button>
-            <button type="button" class="larger btn btn-secondary round-6">Rice/Oil</button>
-            <button type="button" class="larger btn btn-secondary round-6">Drinks</button>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Barkery"})">
+                <button type="button" class="larger btn btn-secondary round-6">Bakery</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Dairy"})">
+                <button type="button" class="larger btn btn-secondary round-6">Dairy</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Candies/Snacks"})">
+                <button type="button" class="larger btn btn-secondary round-6">Candies/ Snacks</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Rice/Oil"})">
+                <button type="button" class="larger btn btn-secondary round-6">Rice/Oil</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Drinks"})">
+                <button type="button" class="larger btn btn-secondary round-6">Drinks</button>
+            </a>
         </div>
         <br />
         <br />
         <br />
         <br />
         <div>
-            <button type="button" class="larger btn btn-secondary round-6">Noodles</button>
-            <button type="button" class="larger btn btn-secondary round-6">Wines</button>
-            <button type="button" class="larger btn btn-secondary round-6">Personal Care</button>
-            <button type="button" class="larger btn btn-secondary round-6">Mik Power/ Baby Care</button>
-            <button type="button" class="larger btn btn-secondary round-6">Household</button>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Noodles"})">
+                <button type="button" class="larger btn btn-secondary round-6">Noodles</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Wines"})">
+                <button type="button" class="larger btn btn-secondary round-6">Wines</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Personal Care"})">
+                <button type="button" class="larger btn btn-secondary round-6">Personal Care</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Mik Power/Baby Care"})">
+                <button type="button" class="larger btn btn-secondary round-6">Milk Power/Baby Care</button>
+            </a>
+            <a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Household"})">
+                <button type="button" class="larger btn btn-secondary round-6">Household</button>
+            </a>
         </div>
     </div>
 
