@@ -77,53 +77,17 @@
 
 <div class=" middle" style=" height:30%;width:30%">
     <h7>
-        Price of Low Fat Milk Powder for Bones and Joints 800g - Anlene <br />
+        Price of Low Fat Milk Powder for Bones and Joints 800g - Anlene  <br /> in different markets the past 5 days
     </h7>
-    <canvas id="config"></canvas>
+    <canvas class="image" id="myChart"></canvas>
 </div>
 
 
 
 
 
-<script>
-    
-    (function () {
-        'use strict';
 
-        var type = 'line';
-        var data = {
-            labels: ['Wellcome', 'PARKnSHOP', 'Market Place', 'Watsons', 'Mannings', 'AEON'],
-            datasets: [
-                {
-                    label: 'Low Fat Milk Powder for Bones and Joints 800g - Anelene',
-                    data: [150, 149.9, 150, 131, 131, 148],
-                }
-            ]
-        }
-        var options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        max: 200,
-                    }
-                }]
-            },
-            title: {
-                display: true,
-                text: 'The price of Low Fat Milk Powder for Bones and Joints 800g - Anelene on 5.30',
-                position: 'top,'
-            },
-            lengend: {
-                position: 'right',
-                display: true,
-            },
-            animation: {
-                duration: 1000,
-                easing: 'easeOutQuart',
-            }
-        };
-    })
+<script>
 
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
