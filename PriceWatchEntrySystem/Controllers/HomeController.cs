@@ -74,7 +74,7 @@ namespace PriceWatchEntrySystem.Controllers
                     ON p.barcode = b.barcode
                     LEFT JOIN supermarket AS s
                     ON s.supermarket_id = p.supermarket_id
-                    WHERE b.categories = 'Dairy' AND p.Date IS NOT NULL
+                    WHERE b.categories = '"+ Catagory + @"' AND p.Date IS NOT NULL
                     GROUP BY p.Date,b.barcode,p.supermarket_id
                     ORDER BY p.Date DESC
                     ";
@@ -97,7 +97,7 @@ namespace PriceWatchEntrySystem.Controllers
                         string curPrice = listOfProductIDs.Rows[i]["p_avg"].ToString();
                         if (curSupermarketName == "Wellcome")
                             pricesTableRows.Wellcome_Price = curPrice;
-                        else if (curSupermarketName == "PARKnShop")
+                        else if (curSupermarketName == "PARKnSHOP")
                             pricesTableRows.PARNnShop_Price = curPrice;
                         else if (curSupermarketName == "Market Place")
                             pricesTableRows.MarketPlace_Price = curPrice;
