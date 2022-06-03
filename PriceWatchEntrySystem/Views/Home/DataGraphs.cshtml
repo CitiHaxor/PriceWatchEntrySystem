@@ -7,85 +7,161 @@
     <script src="~/Scripts/Chart.min.js"></script>
 </head>
 <style>
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
     .middle {
         width: 800px;
         height: 400px;
-        margin: 0 auto;
+        margin: 20px auto;
     }
+
         .middle h7 {
             margin: 0 auto;
         }
+
+    .goods {
+        margin-top: 8px;
+        padding-left: 34px;
+        padding-right: 26px;
+        height: 60px;
+        background-color: #fff;
+        box-shadow: 0px 2px 3px 0px rgba(118, 118, 118, 0.2);
+        line-height: 60px;
+    }
+
+        .goods h2 {
+            float: left;
+            font-size: 20px;
+            color: #00a4ff;
+            font-weight: 400;
+            line-height: 50px;
+        }
+
+        .goods ul {
+            float: left;
+            margin-left: 30px;
+        }
+
+            .goods ul li {
+                float: left;
+            }
+
+        .goods li a {
+            border-left: 1px solid #bfbfbf;
+            padding: 0 30px;
+            font-size: 16px;
+            color: #050505;
+        }
 </style>
 
+
+
 <h2>DataGraphs</h2>
+<div class="goods wrapper">
+    <h2>catogories</h2>
+    <ul>
+        <li><a href="#">Bar Chart</a></li>
+        <li><a href="#">Line Chart</a></li>
+        <li><a href="#">Pie Chart</a></li>
+    </ul>
+</div>
+
 <div class=" middle" style=" height:30%;width:30%">
     <h7>
-        Price of Low Fat Milk Powder for Bones and Joints 800g - Anlene
+        Price of Low Fat Milk Powder for Bones and Joints 800g - Anlene<br />in different markets the past 5 days
     </h7>
-    <canvas class="image" id="myChart" ></canvas>
+    <canvas class="image" id="myChart"></canvas>
+</div>
+
+<div class=" middle" style=" height:30%;width:30%">
+    <h7>
+        Price of Low Fat Milk Powder for Bones and Joints 800g - Anlene <br />
+    </h7>
+    <canvas class="image" id="config"></canvas>
 </div>
 
 
 <script>
+    /*
+    const config = {
+        type: 'line',
+        data: data2,
+    };
+    const labels2 = Utils.months({ count: 7 });
+    const data2 = {
+        labels: labels2,
+        datasets: [{
+            label: 'My First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    };*/
 
- 
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',
         titile: 'Price of Anlene - Low Fat Milk Powder for Bones and Joints 800g',
         data: {
-            
+
             labels: ['2022.5.30', '2022.5.31', '2022.6.1', '2022.6.2', '2022.6.3'],
             datasets: [{
                 label: 'Wellcome',
-                data: [150,149,149.5,132,150],
+                data: [150, 149, 149.5, 132, 150],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
             },
-                {
-                    label: 'PARKnSHOP',
-                    data: [149.9,149.9,149.9,132,149.9],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                },
-                {
-                    label: 'Market Place',
-                    data: [150,150,148,148,150],
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
-                    borderWidth: 1,
-                },
-                {
-                    label: 'Watsons',
-                    data: [131,131,150,150,149.9],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                },
-                {
-                    label: 'Mannings',
-                    data: [131,149,150,149,149],
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1,
-                },
-                {
-                    label: 'AEON',
-                    data:[148,149,149,148,132],
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgba(255, 159, 64, 1)',
-                    borderWidth: 1,
-                },
+            {
+                label: 'PARKnSHOP',
+                data: [149.9, 149.9, 149.9, 132, 149.9],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Market Place',
+                data: [150, 150, 148, 148, 150],
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Watsons',
+                data: [131, 131, 150, 150, 149.9],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'Mannings',
+                data: [131, 149, 150, 149, 149],
+                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 1,
+            },
+            {
+                label: 'AEON',
+                data: [148, 149, 149, 148, 132],
+                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1,
+            },
 
             ]
         },
         options: {
-            
+
             scales: {
                 y: {
-                
+
                     beginAtZero: false
                 },
                 yAxes: [{
@@ -96,5 +172,5 @@
             }
         }
     });
-    
-    </script>
+
+</script>
