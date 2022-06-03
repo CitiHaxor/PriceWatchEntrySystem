@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "DataVisualization";
 }
+
+@using PriceWatchEntrySystem.Models;
+@model PriceTableViewModel
+
 <style>
     .left {
         float: left;
@@ -74,16 +78,16 @@
     <div class="left mb-4">
         <label class="list-group-item list-group-item-action active list-group topic">Categories</label>
         <ul>
-            <li><a href="#">Barkery<span>></span></a></li>
-            <li><a href="#">Dairy<span>></span></a></li>
-            <li><a href="#">Rice/Oil<span>></span></a></li>
-            <li><a href="#">Noodles<span>></span></a></li>
-            <li><a href="#">Candies/ Snacks<span>></span></a></li>
-            <li><a href="#">Drinks<span>></span></a></li>
-            <li><a href="#">Wines<span>></span></a></li>
-            <li><a href="#">Personal Care<span>></span></a></li>
-            <li><a href="#">Household<span>></span></a></li>
-            <li><a href="#">Mik Power/ Baby Care<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Bakery"})">Barkery<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Dairy"})">Dairy<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Rice/Oil"})">Rice/Oil<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Noodles"})">Noodles<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Candies/Snacks"})">Candies/Snacks<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Drinks"})">Drinks<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Wines"})">Wines<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Personal Care"})">Personal Care<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Household"})">Household<span>></span></a></li>
+            <li><a href="@Url.Action("DataVisualization", "Home", new { Catagory = "Mik Power/Baby Care"})">Mik Power/Baby Care<span>></span></a></li>
         </ul>
 
     </div>
@@ -110,166 +114,24 @@
                 </tr>
             </thead>
             <tbody>
+                @for (int i = 0; i < Model.listPricesTableRows.Count(); i++) 
+                {
                 <tr class="table-active">
-                    <th scope="row">Active</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
+                    <th scope="row">@Html.DisplayFor(model => model.listPricesTableRows[i].Barcode)</th>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Date)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Brand)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Name)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Wellcome_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].PARNnShop_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].MarketPlace_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Watsons_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].Mannings_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].AEON_Price)</td>
+                    <td>@Html.DisplayFor(model => model.listPricesTableRows[i].DCHFoodMart_Price)</td>
                 </tr>
-                <tr class="table-active">
-                    <th scope="row">Primary</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Primary</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Secondary</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Success</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Danger</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Warning</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Info</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Light</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Dark</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
+                }
 
-
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Dark</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-
-                </tr>
-                <tr class="table-active">
-                    <th scope="row">Dark</th>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-                    <td>content</td>
-
-                </tr>
+              
             </tbody>
         </table>
     </div>

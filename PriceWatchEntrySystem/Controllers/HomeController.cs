@@ -4,10 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
-using System.Globalization;
 using MySql.Data.MySqlClient;
 using PriceWatchEntrySystem.Models;
-using CsvHelper;
 using System.Xml.Linq;
 using System.IO;
 
@@ -36,26 +34,23 @@ namespace PriceWatchEntrySystem.Controllers
         [HttpPost]
         public ActionResult DataEntry(HttpPostedFileBase postedFile)
         {
-            if (postedFile == null) return View();
+            if (postedFile != null) { 
                 //Check file type
-                
-            string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
-            string sFileExt = System.IO.Path.GetExtension(sFileName);
+                string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
+                string sFileExt = System.IO.Path.GetExtension(sFileName);
 
-            if (sFileExt == ".csv")
-            {
-                // Read the contents of the csv file, update the Product Price table
-                using (var streamReader = new StreamReader(postedFile.InputStream))
+                if (sFileExt == ".csv")
                 {
-                    using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
-                    {
-                        var records = csvReader.GetRecords<dynamic>().ToList();
-                    }
+                    // Read the contents of the csv file, update the Product Price table
+                    
+
+
                 }
+        }
 
-            }
+
+
             return RedirectToAction("Index");
-
         }
 
         [HttpGet]
@@ -65,33 +60,68 @@ namespace PriceWatchEntrySystem.Controllers
                 return RedirectToAction("Login");
 
             // Build the view model
-            
-            
+
+            PriceTableViewModel priceTableViewModel = new PriceTableViewModel();
+
             if (Catagory != null)
             {
-                List<string> barcodeIDs = new List<string>();
+              
+                priceTableViewModel.CatagoryName = Catagory;
 
-                PriceTableViewModel priceTable = new PriceTableViewModel();
-                priceTable.CatagoryName = Catagory;
+                string SQLQueryString = @"SELECT b.barcode, b.brand, b.Name, p.Date, s.supermarket, ROUND(AVG(p.price), 1) AS p_avg, b.categories
+                    FROM barcode_mapping AS b
+                    LEFT JOIN product_prices AS p
+                    ON p.barcode = b.barcode
+                    LEFT JOIN supermarket AS s
+                    ON s.supermarket_id = p.supermarket_id
+                    WHERE b.categories = 'Dairy' AND p.Date IS NOT NULL
+                    GROUP BY p.Date,b.barcode,p.supermarket_id
+                    ORDER BY p.Date DESC
+                    ";
 
-                // Get a list of barcode ID under the catagory
-                DataTable dataTable = ExecuteSQLQuery("SELECT `barcode` FROM `barcode_mapping` WHERE `categories` = '"+Catagory+"'");
+                // Get all product ids that matches the catagory
+                DataTable listOfProductIDs = ExecuteSQLQuery(SQLQueryString);
 
-
-                for (int i = 0; i < dataTable.Rows.Count; i++)
+                //
+                for (int i = 0; i < listOfProductIDs.Rows.Count; i++)
                 {
-                    barcodeIDs.Add(dataTable.Rows[i]["barcode"].ToString());
+                    PricesTableRows pricesTableRows = new PricesTableRows();
+                    pricesTableRows.Barcode = listOfProductIDs.Rows[i]["barcode"].ToString();
+                    pricesTableRows.Brand = listOfProductIDs.Rows[i]["brand"].ToString();
+                    pricesTableRows.Name = listOfProductIDs.Rows[i]["Name"].ToString();
+                    pricesTableRows.Date = listOfProductIDs.Rows[i]["Date"].ToString();
+                    int j = 0;
+                    while (j < 7)
+                    {
+                        string curSupermarketName = listOfProductIDs.Rows[i]["supermarket"].ToString();
+                        string curPrice = listOfProductIDs.Rows[i]["p_avg"].ToString();
+                        if (curSupermarketName == "Wellcome")
+                            pricesTableRows.Wellcome_Price = curPrice;
+                        else if (curSupermarketName == "PARKnShop")
+                            pricesTableRows.PARNnShop_Price = curPrice;
+                        else if (curSupermarketName == "Market Place")
+                            pricesTableRows.MarketPlace_Price = curPrice;
+                        else if (curSupermarketName == "Watsons")
+                            pricesTableRows.Watsons_Price = curPrice;
+                        else if (curSupermarketName == "Mannings")
+                            pricesTableRows.Mannings_Price = curPrice;
+                        else if (curSupermarketName == "AEON")
+                            pricesTableRows.AEON_Price = curPrice;
+                        else if (curSupermarketName == "DCH Food Mart")
+                            pricesTableRows.DCHFoodMart_Price = curPrice;
+
+                        j++;
+                        if (i < listOfProductIDs.Rows.Count - 1)
+                            i++;
+                    }
+                    priceTableViewModel.listPricesTableRows.Add(pricesTableRows);
                 }
 
-                // For each barcode number, get its info
-
-
-                PricesTableRows pricesTableRows = new PricesTableRows();
             }
             
 
 
-            return View();
+            return View(priceTableViewModel);
         }
 
 
