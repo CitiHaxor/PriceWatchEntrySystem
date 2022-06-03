@@ -29,10 +29,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("DataVisualization", "Home")">Data Visualization Tool</a>
+                        <a class="nav-link" href="@Url.Action("DataVisualization", "Home", new { Catagory = "" })">Data Visualization Tool</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("DataEntry", "Home")">Data Entry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("DataGraphs", "Home")">Price Data Graphs</a>
                     </li>
                 </ul>
                
@@ -45,9 +48,13 @@
                     {
                         <a class="btn btn-secondary my-2 my-sm-0" control-id="ControlID-2" href="@Url.Action("Login", "Home")">Login</a>
                     }
+                    else if (ViewContext.RouteData.Values["action"].ToString() == "Register")
+                    {
+                        <a class="btn btn-secondary my-2 my-sm-0" control-id="ControlID-2" href="@Url.Action("Login", "Home")">Login</a>
+                    }
                     else
                     {
-                    <a class="btn btn-secondary my-2 my-sm-0" control-id="ControlID-2" href="@Url.Action("Logout", "Home")">Logout</a>
+                        <a class="btn btn-secondary my-2 my-sm-0" control-id="ControlID-2" href="@Url.Action("Logout", "Home")">Logout</a>
                     }
                 </form>
             </div>

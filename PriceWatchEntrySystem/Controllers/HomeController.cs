@@ -51,16 +51,30 @@ namespace PriceWatchEntrySystem.Controllers
             return View();
         }
 
-
-        public ActionResult DataVisualization()
+        [HttpGet]
+        public ActionResult DataVisualization(string Catagory)
         {
             if (IsUserLoggedIn() == false)
                 return RedirectToAction("Login");
 
+            // Build the view model
+            
+            
+            if (Catagory != null)
+            {
+                PriceTableViewModel priceTable = new PriceTableViewModel();
+                priceTable.CatagoryName = Catagory;
+
+
+
+
+                PricesTableRows pricesTableRows = new PricesTableRows();
+            }
+            
+
+
             return View();
         }
-
-
 
 
         [HttpGet]
@@ -179,6 +193,12 @@ namespace PriceWatchEntrySystem.Controllers
 
             return View();
         }
+        public ActionResult DataGraphs()
+        {
+
+            return View();
+        }
+
 
         public bool IsUserLoggedIn()
         {
@@ -260,6 +280,8 @@ namespace PriceWatchEntrySystem.Controllers
 
             //    System.Diagnostics.Debug.WriteLine(id + " " + supermarket_id + " " + passout + " " + userout);
             //}
+
+           
 
         }
     }
