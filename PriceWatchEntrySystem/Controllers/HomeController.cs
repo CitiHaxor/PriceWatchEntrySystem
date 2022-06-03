@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using System.Globalization;
 using MySql.Data.MySqlClient;
 using PriceWatchEntrySystem.Models;
+using CsvHelper;
 using System.Xml.Linq;
 using System.IO;
 
@@ -34,22 +36,26 @@ namespace PriceWatchEntrySystem.Controllers
         [HttpPost]
         public ActionResult DataEntry(HttpPostedFileBase postedFile)
         {
-            if (postedFile != null) { 
+            if (postedFile == null) return View();
                 //Check file type
-                string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
-                string sFileExt = System.IO.Path.GetExtension(sFileName);
+                
+            string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
+            string sFileExt = System.IO.Path.GetExtension(sFileName);
 
-                if (sFileExt == ".csv")
+            if (sFileExt == ".csv")
+            {
+                // Read the contents of the csv file, update the Product Price table
+                using (var streamReader = new StreamReader(postedFile.InputStream))
                 {
-                    // Read the contents of the csv file, update the Product Price table
-
-
+                    using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                    {
+                        var records = csvReader.GetRecords<dynamic>().ToList();
+                    }
                 }
-        }
 
-
-
+            }
             return RedirectToAction("Index");
+
         }
 
         [HttpGet]
