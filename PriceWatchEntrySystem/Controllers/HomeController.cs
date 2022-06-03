@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Data;
 using MySql.Data.MySqlClient;
 using PriceWatchEntrySystem.Models;
+using System.Xml.Linq;
+using System.IO;
+
 namespace PriceWatchEntrySystem.Controllers
 {
     public class HomeController : Controller
@@ -22,13 +25,42 @@ namespace PriceWatchEntrySystem.Controllers
         [HttpGet]
         public ActionResult DataEntry()
         {
+            if (IsUserLoggedIn() == false)
+                return RedirectToAction("Login");
+
             return View();
         }
 
-        public ActionResult DataVisualization()
+        [HttpPost]
+        public ActionResult DataEntry(HttpPostedFileBase httpPostedFile)
         {
+            //Check file type
+            string sFileName = System.IO.Path.GetFileName(httpPostedFile.FileName);
+            string sFileExt = System.IO.Path.GetExtension(sFileName);
+
+            if (sFileExt == ".csv")
+            {
+                // Read the contents of the csv file, update the Product Price table
+                
+
+
+            }
+
+
+
             return View();
         }
+
+
+        public ActionResult DataVisualization()
+        {
+            if (IsUserLoggedIn() == false)
+                return RedirectToAction("Login");
+
+            return View();
+        }
+
+
 
 
         [HttpGet]
@@ -46,6 +78,7 @@ namespace PriceWatchEntrySystem.Controllers
             string pass = loginViewModel.Password;
             string SQLQuery = "SELECT * FROM user WHERE Username = '" + user + "' AND Password = '" + pass + "'";
             DataTable result = ExecuteSQLQuery(SQLQuery);
+
 
             if (result.Rows.Count == 1)
             {
@@ -73,10 +106,63 @@ namespace PriceWatchEntrySystem.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel registerViewModel)
+        {
+            string registerUsername = registerViewModel.Username;
+            string registerPassword = registerViewModel.Password;
+            string registerRole = registerViewModel.SelectedRole;
+            string registerSupermarket = registerViewModel.SelectedSupermarket;
+
+            // Check if fields are empty
+            if (registerUsername == null || registerPassword == null || registerRole == null || registerSupermarket == null)
+            {
+                ModelState.AddModelError("", "You need to fill in all the information");
+                return View(registerViewModel);
+            }
+            
+            // Check if username exists
+            string SQLQuery = "SELECT `Username` FROM `user` WHERE `Username` = '" + registerUsername + "'";
+            DataTable result = ExecuteSQLQuery(SQLQuery);
+            if (result.Rows.Count != 0)
+            {
+                ModelState.AddModelError("", "This username already exists");
+                return View(registerViewModel);
+            }
+
+            // Get role ID
+            SQLQuery = "SELECT `role_id` FROM `role` WHERE `Role` = '" + registerRole + "'";
+             result = ExecuteSQLQuery(SQLQuery);
+            string registerRoleID = result.Rows[0]["role_id"].ToString();
+
+            // Get supermarket ID
+            SQLQuery = "SELECT `supermarket_id` FROM `supermarket` WHERE `supermarket` = '" + registerSupermarket + "'";
+            result = ExecuteSQLQuery(SQLQuery);
+            string registerSupermarketID = result.Rows[0]["supermarket_id"].ToString();
+
+            string SQLUpdate = "INSERT INTO `user` (supermarket_id, `Password`, role_id, `Username`) VALUES (" + registerSupermarketID + ", '"+ registerPassword +"'," + registerRoleID + ",'" + registerUsername + "')";
+
+            try
+            {
+                ExecuteSQLUpdate(SQLUpdate);
+            }
+            catch (Exception exception)
+            {
+                ModelState.AddModelError("", "A DB error occured");
+                return View(registerViewModel);
+            }
+
+            return RedirectToAction("Login");
+        }
+
         [HttpGet]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel registerViewModel = new RegisterViewModel();
+
+
+
+            return View(registerViewModel);
         }
 
         [HttpGet]

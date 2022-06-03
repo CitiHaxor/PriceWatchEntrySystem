@@ -16,4 +16,13 @@ namespace PriceWatchEntrySystem.Models
         public string Username { get; set; }
         public string Password { get; set; }
     }
+
+    public class RegisterViewModel
+    { 
+        public string Username { get; set;  }
+        public string Password { get; set; }
+        public string SelectedRole { get; set; }
+        public string SelectedSupermarket { get; set; }
+    }
+    
 }

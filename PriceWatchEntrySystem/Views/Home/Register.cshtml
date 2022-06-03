@@ -1,12 +1,13 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Register";
 }
+
+@using PriceWatchEntrySystem.Models;
+@model RegisterViewModel
 <style>
     .bg {
         height: 600px;
         width: 1000px;
-        background-color: lightsteelblue;
         padding: 200px 350px;
         margin: 0 auto;
     }
@@ -16,29 +17,52 @@
     }
 </style>
 
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "myform", enctype = "multiport/form-data" }))
+{
+    <div class="bg bg-light rounded mb-4 mt-4">
+        <div class="center">
+            <h3 class="text-center">Create a New Account</h3>
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.SelectedSupermarket, new List<SelectListItem>
+                {
+                new SelectListItem { Text ="Select Supermarket" , Disabled = true, Selected = true},
+                new SelectListItem { Value="AEON", Text = "AEON" },
+                new SelectListItem { Value="DCH Food Mart", Text = "DCH Food Mart" },
+                new SelectListItem { Value="Mannings", Text = "Mannings" },
+                new SelectListItem { Value="Market Place", Text = "Market Place" },
+                new SelectListItem { Value="PARKnSHOP", Text = "PARKnSHOP" },
+                new SelectListItem { Value="Watsons", Text = "Watsons" },
+                new SelectListItem { Value="Wellcome", Text = "Wellcome" },
+                new SelectListItem { Value="Consumer Council Internal", Text = "Consumer Council Internal" }
+                }, new { @class = "form-select mb-4", @id = "ddlPayment" })
+            </div>
 
-<h2>Register</h2>
-<div class="bg">
-    <div class="center">
-        <div class="form-group">
-            <select class="form-select" id="exampleSelect1">
-                <option>Administrator</option>
-                <option>Supermarket Manager</option>
-                <option>Supermarket Data Input Operator</option>
-            </select>
-        </div>
+            <div class="form-group">
+                @Html.DropDownListFor(m => m.SelectedRole, new List<SelectListItem>
+                {
+                new SelectListItem { Text ="Select Role" , Disabled = true, Selected = true},
+                new SelectListItem { Value="Administrator", Text = "Administrator" },
+                new SelectListItem { Value="Supermarket Manager", Text = "Supermarket Manager" },
+                new SelectListItem { Value="Supermarket Data Input Operator", Text = "Supermarket Data Input Operator" }
+                }, new { @class = "form-select mb-4", @id = "ddlPayment" })
+            </div>
 
-        <br />
-        <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Username">
-        </div>
-        <br />
-        <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-        <br />
-        <div class="but">
-            <button type="button" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                @*<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Username">*@
+                @Html.TextBoxFor(m => m.Username, new { @type = "text", @class = "form-control", @id = "registerusername", @placeholder = "Username" })
+            </div>
+            <br />
+            <div class="form-group">
+                @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
+                @Html.TextBoxFor(m => m.Password, new { @type = "password", @class = "form-control", @id = "registerpassword", @placeholder = "Password" })
+            </div>
+            <br />
+            <div class="text-center mb-3">
+                <input type="submit" value="Submit" class="btn rounded-pill btn-info rounded">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+            
+
         </div>
     </div>
-</div>
+}
