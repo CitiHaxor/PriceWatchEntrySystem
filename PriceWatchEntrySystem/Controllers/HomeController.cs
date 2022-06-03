@@ -4,10 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using System.Diagnostics;
+using System.Globalization;
 using MySql.Data.MySqlClient;
 using PriceWatchEntrySystem.Models;
+using CsvHelper;
 using System.Xml.Linq;
 using System.IO;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
 
 namespace PriceWatchEntrySystem.Controllers
 {
@@ -34,23 +39,65 @@ namespace PriceWatchEntrySystem.Controllers
         [HttpPost]
         public ActionResult DataEntry(HttpPostedFileBase postedFile)
         {
-            if (postedFile != null) { 
+            if (postedFile == null) return View();
                 //Check file type
-                string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
-                string sFileExt = System.IO.Path.GetExtension(sFileName);
+                
+            string sFileName = System.IO.Path.GetFileName(postedFile.FileName);
+            string sFileExt = System.IO.Path.GetExtension(sFileName);
 
-                if (sFileExt == ".csv")
+            if (sFileExt == ".csv")
+            {
+                // Read the contents of the csv file, update the Product Price table
+                using (var streamReader = new StreamReader(postedFile.InputStream))
                 {
-                    // Read the contents of the csv file, update the Product Price table
-                    
+                    using (var csvReader = new CsvReader(streamReader, CultureInfo.InvariantCulture))
+                    {
+                        var records = csvReader.GetRecords<ProductInformation>().ToList();
+                        DataTable qr= ExecuteSQLQuery(String.Format("select supermarket_id from user where Username = '{0}' " , Request.Cookies["CurUsername"].Value));
+                        object o = qr.Rows[0][0].ToString();
+                        int Supermarket = Int16.Parse(o.ToString());
+                        try {
+                        
+                                string server = "35.220.178.165";
+                                string uid = "peter";
+                                string password = "123456";
+                                string database = "CityHaxor";
+                                string mycon = "server =" + server + "; Uid = " + uid + "; password = " + password + "; persistsecurityinfo = True; database = " + database + "; SslMode = none";
+                                MySqlConnection con = new MySqlConnection(mycon);
+                                MySqlCommand cmd = null;
+                                
+                                    con.Open();
+                                    foreach (var VARIABLE in records)
+                                    {
+                                            DateTime oDate = Convert.ToDateTime(VARIABLE.Date);
+                                        String SQLStatement = String.Format("Call insertPrice({0},'{1}',{2},'{3}');", Supermarket,
+                                            VARIABLE.Barcode
+                                            , VARIABLE.Price,oDate.ToString("yyyy-M-d"));
+                                        
+                                        Debug.Print(SQLStatement);
+                                        cmd = new MySqlCommand(SQLStatement, con);
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                    con.Close();
 
+                                
+                        }
+                        catch (Exception e) {
+                            Debug.Print(e.ToString());
+                        }
 
+                    }
                 }
+
+            }
+            return RedirectToAction("Index");
         }
 
-
-
-            return RedirectToAction("Index");
+        public class ProductInformation
+        {
+            [Name("price")] public float Price { get; set; }
+            [Name("barcode")] public string Barcode{ get; set; }
+            [Name("date")] public string Date{ get; set; }
         }
 
         [HttpGet]
